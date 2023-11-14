@@ -54,4 +54,6 @@ mybatis-plus:
       logic-not-delete-value: 0 # ?????????? 0?
 codesandbox:
   type: remote
+knife4j:
+  enable: true
 
