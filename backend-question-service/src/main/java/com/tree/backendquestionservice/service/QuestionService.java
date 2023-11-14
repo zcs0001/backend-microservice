@@ -4,9 +4,9 @@ package com.tree.backendquestionservice.service;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.tree.treeojbackendmodel.model.dto.question.QuestionQueryRequest;
-import com.tree.treeojbackendmodel.model.entity.Question;
-import com.tree.treeojbackendmodel.model.vo.QuestionVO;
+import com.tree.backendmodel.model.dto.question.QuestionQueryRequest;
+import com.tree.backendmodel.model.entity.Question;
+import com.tree.backendmodel.model.vo.QuestionVO;
 
 import javax.servlet.http.HttpServletRequest;
 

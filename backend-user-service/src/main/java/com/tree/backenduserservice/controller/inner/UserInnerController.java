@@ -1,6 +1,6 @@
 package com.tree.backenduserservice.controller.inner;
 
-import com.tree.treeojbackendmodel.model.entity.User;
+import com.tree.backendmodel.model.entity.User;
 import com.tree.backendserviceclient.service.UserFeignClient;
 import com.tree.backenduserservice.service.UserService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,7 +13,7 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * 用户内部服务（仅内部调用）
+ * 用户内部服务（仅内部调用），不是给前端用的
  */
 @RestController
 @RequestMapping("/inner")

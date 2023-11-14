@@ -5,8 +5,8 @@ import com.tree.backendjudgeservice.judge.strategy.DefaultJudgeStrategy;
 import com.tree.backendjudgeservice.judge.strategy.JavaLanguageJudgeStrategy;
 import com.tree.backendjudgeservice.judge.strategy.JudgeContext;
 import com.tree.backendjudgeservice.judge.strategy.JudgeStrategy;
-import com.tree.treeojbackendmodel.model.codesandbox.JudgeInfo;
-import com.tree.treeojbackendmodel.model.entity.QuestionSubmit;
+import com.tree.backendmodel.model.codesandbox.JudgeInfo;
+import com.tree.backendmodel.model.entity.QuestionSubmit;
 import org.springframework.stereotype.Service;
 
 /**

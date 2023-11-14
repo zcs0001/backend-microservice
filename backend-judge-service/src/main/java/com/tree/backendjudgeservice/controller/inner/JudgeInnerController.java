@@ -3,7 +3,7 @@ package com.tree.backendjudgeservice.controller.inner;
 
 import com.tree.backendjudgeservice.judge.service.JudgeService;
 import com.tree.backendserviceclient.service.JudgeFeignClient;
-import com.tree.treeojbackendmodel.model.entity.QuestionSubmit;
+import com.tree.backendmodel.model.entity.QuestionSubmit;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;

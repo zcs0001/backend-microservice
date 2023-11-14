@@ -1,7 +1,7 @@
 package com.tree.backendserviceclient.service;
 
-import com.tree.treeojbackendmodel.model.entity.Question;
-import com.tree.treeojbackendmodel.model.entity.QuestionSubmit;
+import com.tree.backendmodel.model.entity.Question;
+import com.tree.backendmodel.model.entity.QuestionSubmit;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 /**
  * 公共题目服务接口
  */
-@FeignClient(name = "shieroj-backend-question-service", path = "/api/question/inner")
+@FeignClient(name = "backend-question-service", path = "/api/question/inner")
 public interface QuestionFeignClient {
 
     /**

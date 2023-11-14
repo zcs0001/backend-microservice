@@ -4,11 +4,11 @@ package com.tree.backendquestionservice.service;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.tree.treeojbackendmodel.model.dto.questionsumbit.QuestionSubmitAddRequest;
-import com.tree.treeojbackendmodel.model.dto.questionsumbit.QuestionSubmitQueryRequest;
-import com.tree.treeojbackendmodel.model.entity.QuestionSubmit;
-import com.tree.treeojbackendmodel.model.entity.User;
-import com.tree.treeojbackendmodel.model.vo.QuestionSubmitVO;
+import com.tree.backendmodel.model.dto.questionsumbit.QuestionSubmitAddRequest;
+import com.tree.backendmodel.model.dto.questionsumbit.QuestionSubmitQueryRequest;
+import com.tree.backendmodel.model.entity.QuestionSubmit;
+import com.tree.backendmodel.model.entity.User;
+import com.tree.backendmodel.model.vo.QuestionSubmitVO;
 
 
 public interface QuestionSubmitService extends IService<QuestionSubmit> {

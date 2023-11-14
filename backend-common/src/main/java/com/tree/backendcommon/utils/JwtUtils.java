@@ -22,7 +22,7 @@ public class JwtUtils {
     /**
      * 加密KEY
      */
-    private static final String TOKEN_SECRET = "shier";
+    private static final String TOKEN_SECRET = "tree";
 
 
     /**
@@ -64,7 +64,7 @@ public class JwtUtils {
 
         try {
             Claims claims = Jwts.parser()
-                    .setSigningKey("shier")
+                    .setSigningKey("tree")
                     .parseClaimsJws(token)
                     .getBody();
         } catch (Exception e) {

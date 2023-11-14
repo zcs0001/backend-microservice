@@ -2,11 +2,11 @@ package com.tree.backenduserservice.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.tree.treeojbackendmodel.model.dto.user.UserAddRequest;
-import com.tree.treeojbackendmodel.model.dto.user.UserQueryRequest;
-import com.tree.treeojbackendmodel.model.entity.User;
-import com.tree.treeojbackendmodel.model.vo.LoginUserVO;
-import com.tree.treeojbackendmodel.model.vo.UserVO;
+import com.tree.backendmodel.model.dto.user.UserAddRequest;
+import com.tree.backendmodel.model.dto.user.UserQueryRequest;
+import com.tree.backendmodel.model.entity.User;
+import com.tree.backendmodel.model.vo.LoginUserVO;
+import com.tree.backendmodel.model.vo.UserVO;
 
 
 import javax.servlet.http.HttpServletRequest;

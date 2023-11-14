@@ -6,14 +6,12 @@ import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.tree.backendjudgeservice.judge.codesandbox.CodeSandBox;
 import com.tree.backendcommon.common.ErrorCode;
 import com.tree.backendcommon.exception.BusinessException;
-import com.tree.treeojbackendmodel.model.codesandbox.ExecuteCodeRequest;
-import com.tree.treeojbackendmodel.model.codesandbox.ExecuteCodeResponse;
+import com.tree.backendmodel.model.codesandbox.ExecuteCodeRequest;
+import com.tree.backendmodel.model.codesandbox.ExecuteCodeResponse;
 
 
 /**
  * 远程代码沙箱（实际调用接口的沙箱）
- *
- * @author Shier
  */
 public class RemoteCodeSandbox implements CodeSandBox {
 

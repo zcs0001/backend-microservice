@@ -1,6 +1,6 @@
 package com.tree.backendserviceclient.service;
 
-import com.tree.treeojbackendmodel.model.entity.QuestionSubmit;
+import com.tree.backendmodel.model.entity.QuestionSubmit;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 /**
  * 公共判题服务接口
  */
-@FeignClient(name = "shieroj-backend-judge-service", path = "/api/judge/inner")
+@FeignClient(name = "backend-judge-service", path = "/api/judge/inner")
 public interface JudgeFeignClient {
     /**
      * 判题

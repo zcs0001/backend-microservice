@@ -11,7 +11,7 @@
     <modules>
         <module>backend-common</module>
         <module>backend-model</module>
-        <module>backend-gateway</module>
+        <module>backend-gateway1</module>
         <module>backend-judge-service</module>
         <module>backend-user-service</module>
         <module>backend-question-service</module>

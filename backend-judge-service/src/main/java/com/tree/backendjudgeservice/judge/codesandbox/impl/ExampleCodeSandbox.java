@@ -1,19 +1,17 @@
 package com.tree.backendjudgeservice.judge.codesandbox.impl;
 
 import com.tree.backendjudgeservice.judge.codesandbox.CodeSandBox;
-import com.tree.treeojbackendmodel.model.codesandbox.ExecuteCodeRequest;
-import com.tree.treeojbackendmodel.model.codesandbox.ExecuteCodeResponse;
-import com.tree.treeojbackendmodel.model.codesandbox.JudgeInfo;
-import com.tree.treeojbackendmodel.model.enums.JudgeInfoMessageEnum;
-import com.tree.treeojbackendmodel.model.enums.QuestionSubmitStatusEnum;
+import com.tree.backendmodel.model.codesandbox.ExecuteCodeRequest;
+import com.tree.backendmodel.model.codesandbox.ExecuteCodeResponse;
+import com.tree.backendmodel.model.codesandbox.JudgeInfo;
+import com.tree.backendmodel.model.enums.JudgeInfoMessageEnum;
+import com.tree.backendmodel.model.enums.QuestionSubmitStatusEnum;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
 
 /**
  * 示例代码沙箱（仅为了跑通业务流程）
- *
- * @author Shier
  */
 @Slf4j
 public class ExampleCodeSandbox implements CodeSandBox {

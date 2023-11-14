@@ -1,7 +1,7 @@
 package com.tree.backendquestionservice.controller.inner;
 
-import com.tree.treeojbackendmodel.model.entity.Question;
-import com.tree.treeojbackendmodel.model.entity.QuestionSubmit;
+import com.tree.backendmodel.model.entity.Question;
+import com.tree.backendmodel.model.entity.QuestionSubmit;
 import com.tree.backendquestionservice.service.QuestionService;
 import com.tree.backendquestionservice.service.QuestionSubmitService;
 import com.tree.backendserviceclient.service.QuestionFeignClient;

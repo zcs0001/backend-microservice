@@ -2,9 +2,9 @@ package com.tree.backendserviceclient.service;
 
 import com.tree.backendcommon.common.ErrorCode;
 import com.tree.backendcommon.exception.BusinessException;
-import com.tree.treeojbackendmodel.model.entity.User;
-import com.tree.treeojbackendmodel.model.enums.UserRoleEnum;
-import com.tree.treeojbackendmodel.model.vo.UserVO;
+import com.tree.backendmodel.model.entity.User;
+import com.tree.backendmodel.model.enums.UserRoleEnum;
+import com.tree.backendmodel.model.vo.UserVO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +18,7 @@ import static com.tree.backendcommon.constant.UserConstant.USER_LOGIN_STATE;
 
 /**
  * 公共用户服务接口
+ * 提供给其他服务远程共享 服务间使用 而不是给前端使用的
  */
 @FeignClient(name = "backend-user-service", path = "/api/user/inner")
 public interface UserFeignClient {
@@ -42,7 +43,7 @@ public interface UserFeignClient {
 
     /**
      * 获取当前登录用户
-     *
+     * 实现起来非常简单，无需远程调用，直接实现
      * @param request
      * @return
      */

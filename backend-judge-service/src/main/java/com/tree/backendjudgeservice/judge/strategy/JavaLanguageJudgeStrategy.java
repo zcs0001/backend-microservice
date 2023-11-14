@@ -1,11 +1,11 @@
 package com.tree.backendjudgeservice.judge.strategy;
 
 import cn.hutool.json.JSONUtil;
-import com.tree.treeojbackendmodel.model.codesandbox.JudgeInfo;
-import com.tree.treeojbackendmodel.model.dto.question.JudgeCase;
-import com.tree.treeojbackendmodel.model.dto.question.JudgeConfig;
-import com.tree.treeojbackendmodel.model.entity.Question;
-import com.tree.treeojbackendmodel.model.enums.JudgeInfoMessageEnum;
+import com.tree.backendmodel.model.codesandbox.JudgeInfo;
+import com.tree.backendmodel.model.dto.question.JudgeCase;
+import com.tree.backendmodel.model.dto.question.JudgeConfig;
+import com.tree.backendmodel.model.entity.Question;
+import com.tree.backendmodel.model.enums.JudgeInfoMessageEnum;
 
 
 import java.util.List;

@@ -6,8 +6,6 @@ import com.tree.backendjudgeservice.judge.codesandbox.impl.RemoteCodeSandbox;
 import com.tree.backendjudgeservice.judge.codesandbox.impl.ThirdPartyCodeSandbox;
 
 /**
- * @author Shier
- * @createTime 2023/8/30 星期三 10:44
  * 代码沙箱工厂（根据字符串参数创建指定的代码沙箱实例），
  */
 public class CodeSandboxFactory {

@@ -1,7 +1,7 @@
 package com.tree.backendjudgeservice.judge.strategy;
 
 
-import com.tree.treeojbackendmodel.model.codesandbox.JudgeInfo;
+import com.tree.backendmodel.model.codesandbox.JudgeInfo;
 
 /**
  * 判题策略

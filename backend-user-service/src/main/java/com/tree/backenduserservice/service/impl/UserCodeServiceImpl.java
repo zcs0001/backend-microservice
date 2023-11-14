@@ -7,7 +7,7 @@ import com.tree.backenduserservice.service.UserCodeService;
 import com.tree.backendcommon.common.ErrorCode;
 import com.tree.backendcommon.exception.BusinessException;
 import com.tree.backendcommon.exception.ThrowUtils;
-import com.tree.treeojbackendmodel.model.entity.UserCode;
+import com.tree.backendmodel.model.entity.UserCode;
 import org.springframework.stereotype.Service;
 
 @Service

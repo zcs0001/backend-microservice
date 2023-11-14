@@ -1,10 +1,10 @@
 package com.tree.backendjudgeservice.judge.strategy;
 
 
-import com.tree.treeojbackendmodel.model.codesandbox.JudgeInfo;
-import com.tree.treeojbackendmodel.model.dto.question.JudgeCase;
-import com.tree.treeojbackendmodel.model.entity.Question;
-import com.tree.treeojbackendmodel.model.entity.QuestionSubmit;
+import com.tree.backendmodel.model.codesandbox.JudgeInfo;
+import com.tree.backendmodel.model.dto.question.JudgeCase;
+import com.tree.backendmodel.model.entity.Question;
+import com.tree.backendmodel.model.entity.QuestionSubmit;
 import lombok.Data;
 
 import java.util.List;

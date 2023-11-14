@@ -1,7 +1,7 @@
 package com.tree.backendjudgeservice.judge.service;
 
 
-import com.tree.treeojbackendmodel.model.entity.QuestionSubmit;
+import com.tree.backendmodel.model.entity.QuestionSubmit;
 
 /**
  * 判题服务 ：执行代码

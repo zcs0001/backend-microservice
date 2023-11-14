@@ -5,8 +5,8 @@ import com.rabbitmq.client.Channel;
 import com.tree.backendserviceclient.service.QuestionFeignClient;
 import com.tree.backendcommon.common.ErrorCode;
 import com.tree.backendcommon.exception.BusinessException;
-import com.tree.treeojbackendmodel.model.entity.QuestionSubmit;
-import com.tree.treeojbackendmodel.model.enums.QuestionSubmitStatusEnum;
+import com.tree.backendmodel.model.entity.QuestionSubmit;
+import com.tree.backendmodel.model.enums.QuestionSubmitStatusEnum;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -20,9 +20,6 @@ import javax.annotation.Resource;
 import static com.tree.backendcommon.constant.MqConstant.CODE_DLX_QUEUE;
 
 
-/**
- * @author Shier
- */
 @Component
 @Slf4j
 public class CodeMqFailConsumer {
