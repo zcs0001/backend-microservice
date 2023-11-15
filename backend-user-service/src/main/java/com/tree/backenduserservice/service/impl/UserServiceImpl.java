@@ -3,6 +3,7 @@ package com.tree.backenduserservice.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+
 import com.tree.backendcommon.common.ErrorCode;
 import com.tree.backendcommon.constant.CommonConstant;
 import com.tree.backendcommon.exception.BusinessException;
@@ -35,11 +36,12 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import static com.tree.backendcommon.constant.UserConstant.*;
-import static com.tree.backendcommon.constant.UserConstant.SALT;
 
 
 /**
  * 用户服务实现
+ *
+ * @author Shier
  */
 @Service
 @Slf4j
@@ -258,7 +260,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         String gender = userQueryRequest.getGender();
         String phone = userQueryRequest.getPhone();
         String email = userQueryRequest.getEmail();
-        String userStatus = userQueryRequest.getUserState();
+        String userStatus = userQueryRequest.getUserStatus();
         String userName = userQueryRequest.getUserName();
         String userProfile = userQueryRequest.getUserProfile();
         String userRole = userQueryRequest.getUserRole();

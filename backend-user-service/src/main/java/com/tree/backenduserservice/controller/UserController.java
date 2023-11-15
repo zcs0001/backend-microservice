@@ -3,10 +3,6 @@ package com.tree.backenduserservice.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
-import com.tree.backendmodel.model.dto.user.*;
-import com.tree.backendmodel.model.entity.User;
-import com.tree.backenduserservice.service.UserCodeService;
-import com.tree.backenduserservice.service.UserService;
 import com.tree.backendcommon.annotation.AuthCheck;
 import com.tree.backendcommon.common.BaseResponse;
 import com.tree.backendcommon.common.DeleteRequest;
@@ -15,10 +11,14 @@ import com.tree.backendcommon.common.ResultUtils;
 import com.tree.backendcommon.constant.UserConstant;
 import com.tree.backendcommon.exception.BusinessException;
 import com.tree.backendcommon.exception.ThrowUtils;
+import com.tree.backendmodel.model.dto.user.*;
+import com.tree.backendmodel.model.entity.User;
 import com.tree.backendmodel.model.entity.UserCode;
 import com.tree.backendmodel.model.vo.LoginUserVO;
 import com.tree.backendmodel.model.vo.UserCodeVO;
 import com.tree.backendmodel.model.vo.UserVO;
+import com.tree.backenduserservice.service.UserCodeService;
+import com.tree.backenduserservice.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -32,6 +32,8 @@ import java.util.List;
 
 /**
  * 用户接口
+ *
+ * @author Shier
  */
 @RestController
 @RequestMapping("/")

@@ -13,7 +13,9 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * 用户内部服务（仅内部调用），不是给前端用的
+ * 用户内部服务（仅内部调用）
+ *
+ * @author Shier 2023/9/6 15:39
  */
 @RestController
 @RequestMapping("/inner")

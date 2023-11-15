@@ -21,7 +21,7 @@ spring:
           predicates:
             - Path=/api/question/**
   application:
-    name: shieroj-backend-gateway
+    name: backend-gateway
   main:
     web-application-type: reactive
 server:

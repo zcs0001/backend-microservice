@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 /**
  * 用户状态枚举
  */
-public enum UserStateEnum {
+public enum UserStatusEnum {
 
     NORMAL("正常", "0"),
     LOGOUT("注销", "1"),
@@ -19,7 +19,7 @@ public enum UserStateEnum {
 
     private final String value;
 
-    UserStateEnum(String text, String value) {
+    UserStatusEnum(String text, String value) {
         this.text = text;
         this.value = value;
     }
@@ -39,11 +39,11 @@ public enum UserStateEnum {
      * @param value
      * @return
      */
-    public static UserStateEnum getEnumByValue(String value) {
+    public static UserStatusEnum getEnumByValue(String value) {
         if (ObjectUtils.isEmpty(value)) {
             return null;
         }
-        for (UserStateEnum anEnum : UserStateEnum.values()) {
+        for (UserStatusEnum anEnum : UserStatusEnum.values()) {
             if (anEnum.value.equals(value)) {
                 return anEnum;
             }

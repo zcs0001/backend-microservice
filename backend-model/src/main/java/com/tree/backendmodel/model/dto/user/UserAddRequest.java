@@ -58,7 +58,7 @@ public class UserAddRequest implements Serializable {
     /**
      * 用户状态
      */
-    private String userState;
+    private String userStatus;
 
     /**
      * 用户角色: user, admin

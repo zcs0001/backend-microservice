@@ -29,15 +29,15 @@ spring:
     password: 123321
     connect-timeout: 100000
   # rabbitmq
-  rabbitmq:
-    host: xxxxx
-    password: xxxx
-    username: xxxxx
-    port: 5672
-    virtual-host: /
-    listener:
-      direct:
-        acknowledge-mode: manual
+#  rabbitmq:
+#    host: xxxxx
+#    password: xxxx
+#    username: xxxxx
+#    port: 5672
+#    virtual-host: /
+#    listener:
+#      direct:
+#        acknowledge-mode: manual
   # nacos
   cloud:
     nacos:

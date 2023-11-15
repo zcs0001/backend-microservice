@@ -9,6 +9,8 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * MyBatis Plus 配置
+ *
+ * @author Shier
  */
 @Configuration
 @MapperScan("com.tree.backenduserservice.mapper")

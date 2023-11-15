@@ -59,7 +59,7 @@ public class UserVO implements Serializable {
     /**
      * 状态:正常/注销/封号
      */
-    private String userState;
+    private String userStatus;
 
     /**
      * 更新时间
