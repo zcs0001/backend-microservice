@@ -96,7 +96,7 @@ public class QuestionSubmitServiceImpl extends ServiceImpl<QuestionSubmitMapper,
         questionSubmit.setSubmitCode(submitCode);
         questionSubmit.setSubmitLanguage(submitLanguage);
         // 设置初始状态
-        questionSubmit.setSubmitState(QuestionSubmitStatusEnum.WAITING.getValue());
+        questionSubmit.setSubmitStatus(QuestionSubmitStatusEnum.WAITING.getValue());
         questionSubmit.setJudgeInfo("{}");
         boolean save = this.save(questionSubmit);
         ThrowUtils.throwIf(!save, ErrorCode.SYSTEM_ERROR, "数据保存失败");
@@ -124,7 +124,7 @@ public class QuestionSubmitServiceImpl extends ServiceImpl<QuestionSubmitMapper,
 
         Long questionId = questionSubmitQueryRequest.getQuestionId();
         String submitLanguage = questionSubmitQueryRequest.getSubmitLanguage();
-        Integer submitState = questionSubmitQueryRequest.getSubmitState();
+        Integer submitStatus = questionSubmitQueryRequest.getSubmitStatus();
         Long userId = questionSubmitQueryRequest.getUserId();
         String sortField = questionSubmitQueryRequest.getSortField();
         String sortOrder = questionSubmitQueryRequest.getSortOrder();
@@ -138,7 +138,7 @@ public class QuestionSubmitServiceImpl extends ServiceImpl<QuestionSubmitMapper,
         queryWrapper.eq(ObjectUtils.isNotEmpty(submitLanguage), "submitLanguage", submitLanguage);
         queryWrapper.eq(ObjectUtils.isNotEmpty(userId), "userId", userId);
         queryWrapper.eq(ObjectUtils.isNotEmpty(questionId), "questionId", questionId);
-        queryWrapper.eq(QuestionSubmitStatusEnum.getEnumByValue(submitState) != null, "submitState", submitState);
+        queryWrapper.eq(QuestionSubmitStatusEnum.getEnumByValue(submitStatus) != null, "submitStatus", submitStatus);
         queryWrapper.eq("isDelete", false);
         queryWrapper.orderBy(SqlUtils.validSortField(sortField), sortOrder.equals(CommonConstant.SORT_ORDER_ASC),
                 sortField);

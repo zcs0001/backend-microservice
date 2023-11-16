@@ -57,7 +57,7 @@ public class CodeMqConsumer {
         try {
             judgeService.doJudge(questionSubmitId);
             QuestionSubmit questionSubmit = questionFeignClient.getQuestionSubmitById(questionSubmitId);
-            if (!questionSubmit.getSubmitState().equals(QuestionSubmitStatusEnum.SUCCEED.getValue())) {
+            if (!questionSubmit.getSubmitStatus().equals(QuestionSubmitStatusEnum.SUCCEED.getValue())) {
                 channel.basicNack(deliveryTag, false, false);
                 throw new BusinessException(ErrorCode.OPERATION_ERROR, "判题失败");
             }

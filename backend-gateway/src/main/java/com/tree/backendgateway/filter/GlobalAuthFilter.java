@@ -40,7 +40,7 @@ public class GlobalAuthFilter implements GlobalFilter, Ordered {
     }
 
     /**
-     * 优先级最高
+     * 使用order确保优先级最高
      * @return
      */
     @Override

@@ -9,7 +9,7 @@ import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource;
 import java.util.Arrays;
 
 /**
- * 网关跨域
+ * SpringCloud网关跨域 与单体项目的还不一样
  */
 @Configuration
 public class CorsConfig {
@@ -21,7 +21,7 @@ public class CorsConfig {
         config.addAllowedHeader("*");
         config.setAllowCredentials(true);
         // 设置线上前端项目地址
-        config.setAllowedOriginPatterns(Arrays.asList("http://localhost:8080", "http://127.0.0.1:8080", "http://oj.kongshier.top", "http://xxxxx:80"));
+        config.setAllowedOriginPatterns(Arrays.asList("http://localhost:8080", "http://127.0.0.1:8080", "http://175.178.48.233", "http://xxxxx:80"));
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", config);
         return new CorsWebFilter(source);

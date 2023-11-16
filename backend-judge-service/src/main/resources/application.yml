@@ -28,12 +28,12 @@ spring:
     timeout: 5000
     password: 123321
     connect-timeout: 100000
-  # todo rabbitmq ??
-#  rabbitmq:
-#    host: xxxxx
-#    password: xxxx
-#    username: xxxxx
-#    port: 5672
+  # rabbitmq
+  rabbitmq:
+    host: localhost
+    port: 5672
+    password: guest
+    username: guest
 #    virtual-host: /
 #    listener:
 #      direct:
@@ -51,6 +51,7 @@ server:
     session:
       cookie:
         max-age: 2592000
+        path: /api
 mybatis-plus:
   configuration:
     map-underscore-to-camel-case: false

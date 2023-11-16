@@ -52,13 +52,13 @@ public class JudgeServiceImpl implements JudgeService {
             throw new BusinessException(ErrorCode.NOT_FOUND_ERROR, "题目不存在");
         }
         // 2、如果题目提交状态不为等待中
-        if (!questionSubmit.getSubmitState().equals(QuestionSubmitStatusEnum.WAITING.getValue())) {
+        if (!questionSubmit.getSubmitStatus().equals(QuestionSubmitStatusEnum.WAITING.getValue())) {
             throw new BusinessException(ErrorCode.OPERATION_ERROR, "题目正在判题中");
         }
         // 3、更改判题（题目提交）的状态为 “判题中”，防止重复执行，也能让用户即时看到状态
         QuestionSubmit updateQuestionSubmit = new QuestionSubmit();
         updateQuestionSubmit.setId(questionSubmitId);
-        updateQuestionSubmit.setSubmitState(QuestionSubmitStatusEnum.RUNNING.getValue());
+        updateQuestionSubmit.setSubmitStatus(QuestionSubmitStatusEnum.RUNNING.getValue());
         boolean updateState = questionFeignClient.updateQuestionSubmitById(updateQuestionSubmit);
         if (!updateState) {
             throw new BusinessException(ErrorCode.SYSTEM_ERROR, "题目状态更新失败");
@@ -94,7 +94,7 @@ public class JudgeServiceImpl implements JudgeService {
         // 6、修改判题结果
         updateQuestionSubmit = new QuestionSubmit();
         updateQuestionSubmit.setId(questionSubmitId);
-        updateQuestionSubmit.setSubmitState(QuestionSubmitStatusEnum.SUCCEED.getValue());
+        updateQuestionSubmit.setSubmitStatus(QuestionSubmitStatusEnum.SUCCEED.getValue());
         updateQuestionSubmit.setJudgeInfo(JSONUtil.toJsonStr(judgeInfo));
         updateState = questionFeignClient.updateQuestionSubmitById(updateQuestionSubmit);
         if (!updateState) {

@@ -50,7 +50,7 @@ public class CodeMqFailConsumer {
             throw new BusinessException(ErrorCode.PARAMS_ERROR, "提交的题目信息不存在");
         }
         // 把提交题目标为失败
-        questionSubmit.setSubmitState(QuestionSubmitStatusEnum.FAILED.getValue());
+        questionSubmit.setSubmitStatus(QuestionSubmitStatusEnum.FAILED.getValue());
 
         boolean update = questionFeignClient.updateQuestionSubmitById(questionSubmit);
         if (!update) {
