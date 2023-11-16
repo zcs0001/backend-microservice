@@ -16,6 +16,7 @@
         <module>backend-user-service</module>
         <module>backend-question-service</module>
         <module>backend-service-client</module>
+        <module>backend-file-service</module>
     </modules>
     <properties>
         <java.version>1.8</java.version>
