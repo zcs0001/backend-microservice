@@ -23,7 +23,7 @@ spring:
   # Redis 配置
   redis:
     database: 3
-    host: localhost
+    host: 192.168.131.123
     port: 6379
     timeout: 5000
     password: 123321
@@ -56,4 +56,4 @@ aliyun:
       endpoint: oss-cn-nanjing.aliyuncs.com
       keyid: LTAI5tRhToR3gkgVC6PRcobE
       keysecret: kmeHJzViHVsV4dmvkedlWOBpsi3ibl
-      bucketname: tree-oj
+      bucketname: thetree-oj

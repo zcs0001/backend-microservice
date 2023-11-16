@@ -62,7 +62,7 @@ public class FileServiceImpl implements FileService {
             //参数2： 上传到oss文件路径和文件名称 /aa/bb/1.jpg
             //参数3： 上传文件的输入流
             ossClient.putObject(bucketName, fileName, inputStream);
-
+            System.out.println(ossClient);
             // 关闭OSSClient。
             ossClient.shutdown();
 
