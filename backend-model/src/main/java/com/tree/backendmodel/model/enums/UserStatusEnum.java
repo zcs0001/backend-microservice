@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 public enum UserStatusEnum {
 
     NORMAL("正常", "0"),
-    LOGOUT("注销", "1"),
+    WRITE_OFF("注销", "1"),
     BAN("封号", "2");
 
     private final String text;
@@ -50,7 +50,14 @@ public enum UserStatusEnum {
         }
         return null;
     }
-
+    public static UserStatusEnum getEnumByText(String text) {
+        for (UserStatusEnum value : UserStatusEnum.values()) {
+            if (value.getText().equals(text)) {
+                return value;
+            }
+        }
+        return null;
+    }
     public String getValue() {
         return value;
     }

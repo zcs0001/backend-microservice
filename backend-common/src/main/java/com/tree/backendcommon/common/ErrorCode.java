@@ -11,6 +11,8 @@ public enum ErrorCode {
     NO_AUTH_ERROR(40101, "无权限"),
     NOT_FOUND_ERROR(40400, "请求数据不存在"),
 
+    WRITE_OFF_ERROR(40200, "账号已被注销，禁止登录，请重新注册账号登录"),
+    BAN_ERROR(40200, "此账号已被封号，禁止登录，请联系管理员解决"),
     /**
      * 40001 数据为空
      */

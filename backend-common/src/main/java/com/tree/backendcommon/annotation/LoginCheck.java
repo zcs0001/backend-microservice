@@ -6,18 +6,18 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * 权限校验,用于判断用户角色UserRole是否为管理员，以确定用户是否具有管理员权限
+ * 权限校验 用于判断用户状态UserStatus,以确定用户是否可以正常登录
  */
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface AuthCheck {
+public @interface LoginCheck {
 
     /**
      * 必须有某个角色
      *
      * @return
      */
-    String mustRole() default "";
+    String mustStatus() default "";
 
 }
 

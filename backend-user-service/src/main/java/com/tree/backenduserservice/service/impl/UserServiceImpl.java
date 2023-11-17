@@ -40,8 +40,6 @@ import static com.tree.backendcommon.constant.UserConstant.*;
 
 /**
  * 用户服务实现
- *
- * @author Shier
  */
 @Service
 @Slf4j

@@ -31,6 +31,7 @@ public interface UserConstant {
      */
     String BAN_ROLE = "ban";
 
+    String NORMAL_STATUS = "正常";
     /**
      * 默认头像
      */

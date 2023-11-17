@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
 import com.tree.backendcommon.annotation.AuthCheck;
+import com.tree.backendcommon.annotation.LoginCheck;
 import com.tree.backendcommon.common.BaseResponse;
 import com.tree.backendcommon.common.DeleteRequest;
 import com.tree.backendcommon.common.ErrorCode;
@@ -14,6 +15,7 @@ import com.tree.backendcommon.exception.ThrowUtils;
 import com.tree.backendmodel.model.dto.user.*;
 import com.tree.backendmodel.model.entity.User;
 import com.tree.backendmodel.model.entity.UserCode;
+import com.tree.backendmodel.model.enums.UserStatusEnum;
 import com.tree.backendmodel.model.vo.LoginUserVO;
 import com.tree.backendmodel.model.vo.UserCodeVO;
 import com.tree.backendmodel.model.vo.UserVO;
@@ -32,8 +34,6 @@ import java.util.List;
 
 /**
  * 用户接口
- *
- * @author Shier
  */
 @RestController
 @RequestMapping("/")
@@ -78,6 +78,7 @@ public class UserController {
      * @return
      */
     @PostMapping("/login")
+    @LoginCheck(mustStatus = UserConstant.NORMAL_STATUS)
     @ApiOperation(value = "用户登录")
     public BaseResponse<LoginUserVO> userLogin(@RequestBody UserLoginRequest userLoginRequest, HttpServletRequest request) {
         if (userLoginRequest == null) {
