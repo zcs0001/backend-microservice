@@ -30,6 +30,7 @@ public class CodeSandboxInnerController implements CodeSandboxFeignClient {
         }
         log.info("使用代码沙箱");
         // 使用不同的代码沙箱
-        return javaNativeCodeSandbox.executeCode(executeCodeRequest);
+        return javaDockerCodeSandbox.executeCode(executeCodeRequest);
+//        return javaNativeCodeSandbox.executeCode(executeCodeRequest);
     }
 }
