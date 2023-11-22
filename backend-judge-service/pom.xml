@@ -43,6 +43,11 @@
         </dependency>
         <dependency>
             <groupId>com.tree</groupId>
+            <artifactId>treeoj-code-sandbox</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.tree</groupId>
             <artifactId>backend-model</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
@@ -58,6 +63,14 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>repackage</id>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
                 <configuration>
                     <image>
                         <builder>paketobuildpacks/builder-jammy-base:latest</builder>

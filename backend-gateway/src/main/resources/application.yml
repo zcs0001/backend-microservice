@@ -20,6 +20,10 @@ spring:
           uri: lb://backend-question-service
           predicates:
             - Path=/api/question/**
+        - id: treeoj-code-sandbox
+          uri: lb://treeoj-code-sandbox
+          predicates:
+            - Path=/api/codesandbox/**
   application:
     name: backend-gateway
   main:

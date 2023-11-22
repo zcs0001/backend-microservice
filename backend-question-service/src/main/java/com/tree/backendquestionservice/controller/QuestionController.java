@@ -327,6 +327,7 @@ public class QuestionController {
         if (!rateLimit) {
             return ResultUtils.error(ErrorCode.TOO_MANY_REQUEST, "提交过于频繁,请稍后重试");
         }
+        log.info("题目提交");
         long questionSubmitId = questionSubmitService.doQuestionSubmit(questionSubmitAddRequest, loginUser);
         return ResultUtils.success(questionSubmitId);
     }

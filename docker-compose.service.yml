@@ -1,0 +1,80 @@
+version: '3'
+services:
+  backend-gateway:
+    container_name: backend-gateway
+    build:
+      context: ./backend-gateway
+      dockerfile: Dockerfile
+    ports:
+      - "8101:8101"
+    networks:
+      - mynetwork
+
+  backend-user-service:
+    container_name: backend-user-service
+    build:
+      context: ./backend-user-service
+      dockerfile: Dockerfile
+    ports:
+      - "8102:8102"
+    networks:
+      - mynetwork
+    depends_on:
+      - backend-gateway
+
+  backend-question-service:
+    container_name: backend-question-service
+    build:
+      context: ./backend-question-service
+      dockerfile: Dockerfile
+    ports:
+      - "8103:8103"
+    networks:
+      - mynetwork
+    depends_on:
+      - backend-user-service
+      - backend-gateway
+
+  backend-judge-service:
+    container_name: backend-judge-service
+    build:
+      context: ./backend-judge-service
+      dockerfile: Dockerfile
+    ports:
+      - "8104:8104"
+    networks:
+      - mynetwork
+    depends_on:
+      - backend-user-service
+      - backend-question-service
+      - backend-gateway
+      - treeoj-code-sandbox
+
+  backend-file-service:
+    container_name: backend-file-service
+    build:
+      context: ./backend-file-service
+      dockerfile: Dockerfile
+    ports:
+      - "8105:8105"
+    networks:
+      - mynetwork
+    depends_on:
+      - backend-user-service
+      - backend-gateway
+
+  treeoj-code-sandbox:
+    container_name: treeoj-code-sandbox
+    build:
+      context: ./treeoj-code-sandbox
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8081"
+    networks:
+      - mynetwork
+    depends_on:
+      - backend-gateway
+
+# 网络，不定义的话就是默认网络
+networks:
+  mynetwork:

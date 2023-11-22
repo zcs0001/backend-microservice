@@ -14,12 +14,8 @@ import com.tree.backendcommon.exception.BusinessException;
 import com.tree.backendcommon.exception.ThrowUtils;
 import com.tree.backendmodel.model.dto.user.*;
 import com.tree.backendmodel.model.entity.User;
-import com.tree.backendmodel.model.entity.UserCode;
-import com.tree.backendmodel.model.enums.UserStatusEnum;
 import com.tree.backendmodel.model.vo.LoginUserVO;
-import com.tree.backendmodel.model.vo.UserCodeVO;
 import com.tree.backendmodel.model.vo.UserVO;
-import com.tree.backenduserservice.service.UserCodeService;
 import com.tree.backenduserservice.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -43,9 +39,6 @@ public class UserController {
 
     @Resource
     private UserService userService;
-
-    @Resource
-    private UserCodeService userCodeService;
 
 
     /**
@@ -219,22 +212,12 @@ public class UserController {
      * @return
      */
     @GetMapping("/get/vo")
-    @ApiOperation(value = "获取包装类用户")
-    public BaseResponse<UserCodeVO> getUserVOById(long id, HttpServletRequest request) {
+    public BaseResponse<UserVO> getUserVOById(long id, HttpServletRequest request) {
         BaseResponse<User> response = getUserById(id, request);
-        QueryWrapper<UserCode> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("userId", id);
-        UserCode userCode = userCodeService.getOne(queryWrapper);
         User user = response.getData();
-        // 脱敏，将密码设置为空
-        user.setUserPassword("");
-        UserCodeVO userCodeVO = new UserCodeVO();
-        // 将user的属性复制给userCodeVO
-        BeanUtils.copyProperties(user, userCodeVO);
-        // 将用编号添加到userCode表
-        userCodeVO.setId(userCode.getId());
-        return ResultUtils.success(userCodeVO);
+        return ResultUtils.success(userService.getUserVO(user));
     }
+
 
     /**
      * 分页获取用户列表（仅管理员）

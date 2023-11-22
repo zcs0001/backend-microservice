@@ -23,6 +23,7 @@ import com.tree.backendquestionservice.service.QuestionService;
 import com.tree.backendquestionservice.service.QuestionSubmitService;
 import com.tree.backendserviceclient.service.JudgeFeignClient;
 import com.tree.backendserviceclient.service.UserFeignClient;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.context.annotation.Lazy;
@@ -35,6 +36,7 @@ import java.util.stream.Collectors;
 import static com.tree.backendcommon.constant.MqConstant.CODE_EXCHANGE_NAME;
 import static com.tree.backendcommon.constant.MqConstant.CODE_ROUTING_KEY;
 
+@Slf4j
 @Service
 public class QuestionSubmitServiceImpl extends ServiceImpl<QuestionSubmitMapper, QuestionSubmit>
         implements QuestionSubmitService {
@@ -61,6 +63,7 @@ public class QuestionSubmitServiceImpl extends ServiceImpl<QuestionSubmitMapper,
      */
     @Override
     public long doQuestionSubmit(QuestionSubmitAddRequest questionSubmitAddRequest, User loginUser) {
+        log.info("题目提交实现");
         Long questionId = questionSubmitAddRequest.getQuestionId();
         String submitLanguage = questionSubmitAddRequest.getSubmitLanguage();
         String submitCode = questionSubmitAddRequest.getSubmitCode();
@@ -103,6 +106,7 @@ public class QuestionSubmitServiceImpl extends ServiceImpl<QuestionSubmitMapper,
 
         Long questionSubmitId = questionSubmit.getId();
         // 生产者发送消息
+        log.info("生产者发送消息");
         codeMqProducer.sendMessage(CODE_EXCHANGE_NAME, CODE_ROUTING_KEY, String.valueOf(questionSubmitId));
         // 执行判题服务
         // CompletableFuture.runAsync(() -> {

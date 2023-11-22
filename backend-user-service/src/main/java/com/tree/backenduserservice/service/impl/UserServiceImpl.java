@@ -12,12 +12,11 @@ import com.tree.backendcommon.utils.SqlUtils;
 import com.tree.backendmodel.model.dto.user.UserAddRequest;
 import com.tree.backendmodel.model.dto.user.UserQueryRequest;
 import com.tree.backendmodel.model.entity.User;
-import com.tree.backendmodel.model.entity.UserCode;
+
 import com.tree.backendmodel.model.enums.UserRoleEnum;
 import com.tree.backendmodel.model.vo.LoginUserVO;
 import com.tree.backendmodel.model.vo.UserVO;
 import com.tree.backenduserservice.mapper.UserMapper;
-import com.tree.backenduserservice.service.UserCodeService;
 import com.tree.backenduserservice.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -44,9 +43,6 @@ import static com.tree.backendcommon.constant.UserConstant.*;
 @Service
 @Slf4j
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
-
-    @Resource
-    private UserCodeService userCodeService;
 
     @Override
     public long userRegister(String userAccount, String userPassword, String checkPassword) {
@@ -87,7 +83,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             // 3. 插入数据
             User user = new User();
             user.setUserAccount(userAccount);
-            // 默认账号即是昵称
+            // 默认账号是昵称
             user.setUserName(userAccount);
             user.setUserPassword(encryptPassword);
             user.setUserAvatar(USER_DEFAULT_AVATAR);
@@ -95,12 +91,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             if (!saveResult) {
                 throw new BusinessException(ErrorCode.SYSTEM_ERROR, "注册失败，数据库错误");
             }
-
-            // 用户编号自增
-            UserCode code = new UserCode();
-            code.setUserId(user.getId());
-            userCodeService.save(code);
-
             return user.getId();
         }
     }
@@ -341,11 +331,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             if (!saveResult) {
                 throw new BusinessException(ErrorCode.SYSTEM_ERROR, "新增失败，数据库错误");
             }
-
-            // 用户编号自增
-            UserCode code = new UserCode();
-            code.setUserId(user.getId());
-            userCodeService.save(code);
 
             return user.getId();
         }

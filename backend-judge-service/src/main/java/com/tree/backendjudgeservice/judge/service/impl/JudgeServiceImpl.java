@@ -3,12 +3,8 @@ package com.tree.backendjudgeservice.judge.service.impl;
 import cn.hutool.json.JSONUtil;
 
 import com.tree.backendjudgeservice.judge.JudgeManager;
-import com.tree.backendjudgeservice.judge.codesandbox.CodeSandBox;
-import com.tree.backendjudgeservice.judge.codesandbox.CodeSandBoxProxy;
-import com.tree.backendjudgeservice.judge.codesandbox.CodeSandboxFactory;
 import com.tree.backendjudgeservice.judge.service.JudgeService;
 import com.tree.backendjudgeservice.judge.strategy.JudgeContext;
-import com.tree.backendserviceclient.service.QuestionFeignClient;
 import com.tree.backendcommon.common.ErrorCode;
 import com.tree.backendcommon.exception.BusinessException;
 import com.tree.backendmodel.model.codesandbox.ExecuteCodeRequest;
@@ -18,6 +14,9 @@ import com.tree.backendmodel.model.dto.question.JudgeCase;
 import com.tree.backendmodel.model.entity.Question;
 import com.tree.backendmodel.model.entity.QuestionSubmit;
 import com.tree.backendmodel.model.enums.QuestionSubmitStatusEnum;
+import com.tree.backendserviceclient.service.CodeSandboxFeignClient;
+import com.tree.backendserviceclient.service.QuestionFeignClient;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -25,7 +24,7 @@ import javax.annotation.Resource;
 import java.util.List;
 import java.util.stream.Collectors;
 
-
+@Slf4j
 @Service
 public class JudgeServiceImpl implements JudgeService {
 
@@ -33,10 +32,12 @@ public class JudgeServiceImpl implements JudgeService {
     private QuestionFeignClient questionFeignClient;
 
     @Resource
+    private CodeSandboxFeignClient codeSandboxFeignClient;
+    @Resource
     private JudgeManager judgeManager;
 
-    @Value("${codesandbox.type:example}")
-    private String judgeType;
+//    @Value("${codesandbox.type:example}")
+//    private String judgeType;
 
     @Override
     public QuestionSubmit doJudge(long questionSubmitId) {
@@ -64,8 +65,8 @@ public class JudgeServiceImpl implements JudgeService {
             throw new BusinessException(ErrorCode.SYSTEM_ERROR, "题目状态更新失败");
         }
         // 4、调用沙箱，获取到执行结果
-        CodeSandBox codeSandbox = CodeSandboxFactory.newInstance(judgeType);
-        codeSandbox = new CodeSandBoxProxy(codeSandbox);
+//        CodeSandBox codeSandbox = CodeSandboxFactory.newInstance(judgeType);
+//        codeSandbox = new CodeSandBoxProxy(codeSandbox);
         String submitLanguage = questionSubmit.getSubmitLanguage();
         String submitCode = questionSubmit.getSubmitCode();
         // 获取输入用例
@@ -79,7 +80,10 @@ public class JudgeServiceImpl implements JudgeService {
                 .language(submitLanguage)
                 .inputList(inputList)
                 .build();
-        ExecuteCodeResponse executeCodeResponse = codeSandbox.executeCode(executeCodeRequest);
+//        ExecuteCodeResponse executeCodeResponse = codeSandbox.executeCode(executeCodeRequest);
+        log.info("调用codeSandboxFeignClient");
+        ExecuteCodeResponse executeCodeResponse = codeSandboxFeignClient.executeCode(executeCodeRequest);
+        log.info("使用codeSandboxFeignClient成功");
         List<String> outputList = executeCodeResponse.getOutputList();
         // 5、根据沙箱的执行结果，设置题目的判题状态和信息
         JudgeContext judgeContext = new JudgeContext();

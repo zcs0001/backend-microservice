@@ -19,7 +19,8 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 public class BackendJudgeServiceApplication {
 
     public static void main(String[] args) {
-        CodeMqInitMain.doInitCodeMq();
+        // 初始化消息队列，先注释掉，改用 Bean 的方式初始化消息队列（InitRabbitMqBean.java）
+//        CodeMqInitMain.doInitCodeMq();
         SpringApplication.run(BackendJudgeServiceApplication.class, args);
     }
 
