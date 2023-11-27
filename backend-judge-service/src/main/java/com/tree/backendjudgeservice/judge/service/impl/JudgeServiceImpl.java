@@ -3,6 +3,9 @@ package com.tree.backendjudgeservice.judge.service.impl;
 import cn.hutool.json.JSONUtil;
 
 import com.tree.backendjudgeservice.judge.JudgeManager;
+import com.tree.backendjudgeservice.judge.codesandbox.CodeSandBox;
+import com.tree.backendjudgeservice.judge.codesandbox.CodeSandBoxProxy;
+import com.tree.backendjudgeservice.judge.codesandbox.CodeSandboxFactory;
 import com.tree.backendjudgeservice.judge.service.JudgeService;
 import com.tree.backendjudgeservice.judge.strategy.JudgeContext;
 import com.tree.backendcommon.common.ErrorCode;
@@ -36,8 +39,8 @@ public class JudgeServiceImpl implements JudgeService {
     @Resource
     private JudgeManager judgeManager;
 
-//    @Value("${codesandbox.type:example}")
-//    private String judgeType;
+    @Value("${codesandbox.type:example}")
+    private String judgeType;
 
     @Override
     public QuestionSubmit doJudge(long questionSubmitId) {
@@ -65,8 +68,8 @@ public class JudgeServiceImpl implements JudgeService {
             throw new BusinessException(ErrorCode.SYSTEM_ERROR, "题目状态更新失败");
         }
         // 4、调用沙箱，获取到执行结果
-//        CodeSandBox codeSandbox = CodeSandboxFactory.newInstance(judgeType);
-//        codeSandbox = new CodeSandBoxProxy(codeSandbox);
+        CodeSandBox codeSandbox = CodeSandboxFactory.newInstance(judgeType);
+        codeSandbox = new CodeSandBoxProxy(codeSandbox);
         String submitLanguage = questionSubmit.getSubmitLanguage();
         String submitCode = questionSubmit.getSubmitCode();
         // 获取输入用例
@@ -80,9 +83,9 @@ public class JudgeServiceImpl implements JudgeService {
                 .language(submitLanguage)
                 .inputList(inputList)
                 .build();
-//        ExecuteCodeResponse executeCodeResponse = codeSandbox.executeCode(executeCodeRequest);
+        ExecuteCodeResponse executeCodeResponse = codeSandbox.executeCode(executeCodeRequest);
         log.info("调用codeSandboxFeignClient");
-        ExecuteCodeResponse executeCodeResponse = codeSandboxFeignClient.executeCode(executeCodeRequest);
+//        ExecuteCodeResponse executeCodeResponse = codeSandboxFeignClient.executeCode(executeCodeRequest);
         log.info("使用codeSandboxFeignClient成功");
         List<String> outputList = executeCodeResponse.getOutputList();
         // 5、根据沙箱的执行结果，设置题目的判题状态和信息

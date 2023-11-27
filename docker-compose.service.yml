@@ -48,7 +48,7 @@ services:
       - backend-user-service
       - backend-question-service
       - backend-gateway
-      - treeoj-code-sandbox
+#      - treeoj-code-sandbox
 
   backend-file-service:
     container_name: backend-file-service

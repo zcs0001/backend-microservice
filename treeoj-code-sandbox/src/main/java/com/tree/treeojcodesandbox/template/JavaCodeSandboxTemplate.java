@@ -7,7 +7,7 @@ import cn.hutool.dfa.WordTree;
 import com.tree.treeojcodesandbox.CodeSandBox;
 import com.tree.backendmodel.model.codesandbox.ExecuteCodeRequest;
 import com.tree.backendmodel.model.codesandbox.ExecuteCodeResponse;
-import com.tree.treeojcodesandbox.model.ExecuteMessage;
+import com.tree.backendmodel.model.codesandbox.ExecuteMessage;
 import com.tree.backendmodel.model.codesandbox.JudgeInfo;
 import com.tree.treeojcodesandbox.utils.ProcessUtils;
 import lombok.extern.slf4j.Slf4j;
@@ -55,7 +55,6 @@ public abstract class JavaCodeSandboxTemplate implements CodeSandBox {
      */
     @Override
     public ExecuteCodeResponse executeCode(ExecuteCodeRequest executeCodeRequest) {
-        log.info("开始运行代码");
         // 开启权限管理器
 //        System.setSecurityManager(new MySecurityManager());
 
@@ -71,8 +70,9 @@ public abstract class JavaCodeSandboxTemplate implements CodeSandBox {
         log.info("编译后信息：{}", compileFileExecuteMessage);
 
         // 3、执行程序
+        log.info("开始执行程序");
         List<ExecuteMessage> executeMessageList = runCode(userCodeFile, inputList);
-
+        log.info("执行程序后信息：{}", executeMessageList);
         // 4、整理输出结果
         ExecuteCodeResponse outputResponse = getOutputResponse(executeMessageList);
 
@@ -143,7 +143,13 @@ public abstract class JavaCodeSandboxTemplate implements CodeSandBox {
      * @return
      */
     public List<ExecuteMessage> runCode(File userCodeFile, List<String> inputList) {
-        String userCodeParentPath = userCodeFile.getParentFile().getAbsolutePath();
+        String userCodeParentPath="";
+        try {
+            userCodeParentPath = userCodeFile.getParentFile().getAbsolutePath();
+
+        }catch (Exception e){
+            log.error("获取代码文件失败"+e.getMessage());
+        }
         List<ExecuteMessage> executeMessageList = new ArrayList<>();
         for (String inputArgs : inputList) {
             // 限制资源的分配

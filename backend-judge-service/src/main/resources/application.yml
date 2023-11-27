@@ -62,8 +62,8 @@ mybatis-plus:
       logic-delete-value: 1 # ?????????? 1?
       logic-not-delete-value: 0 # ?????????? 0?
 # 代码沙箱
-#codesandbox:
-#  type: remote
+codesandbox:
+  type: remote
 # knife4j
 knife4j:
   enable: true

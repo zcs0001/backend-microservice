@@ -6,6 +6,7 @@ import com.tree.backendmodel.model.dto.question.JudgeCase;
 import com.tree.backendmodel.model.dto.question.JudgeConfig;
 import com.tree.backendmodel.model.entity.Question;
 import com.tree.backendmodel.model.enums.JudgeInfoMessageEnum;
+import lombok.extern.slf4j.Slf4j;
 
 
 import java.util.List;
@@ -14,6 +15,7 @@ import java.util.Optional;
 /**
  * Java 程序的判题策略
  */
+@Slf4j
 public class JavaLanguageJudgeStrategy implements JudgeStrategy {
 
     /**
@@ -46,6 +48,8 @@ public class JavaLanguageJudgeStrategy implements JudgeStrategy {
         for (int i = 0; i < judgeCaseList.size(); i++) {
             JudgeCase judgeCase = judgeCaseList.get(i);
             if (!judgeCase.getOutput().equals(outputList.get(i))) {
+                log.info("judgeCase.getOutput()"+judgeCase.getOutput());
+                log.info("outputList.get(i)"+outputList.get(i));
                 judgeInfoMessageEnum = JudgeInfoMessageEnum.WRONG_ANSWER;
                 judgeInfoResponse.setMessage(judgeInfoMessageEnum.getText());
 //                judgeInfoResponse.setMessage(judgeInfoMessageEnum.getValue());
