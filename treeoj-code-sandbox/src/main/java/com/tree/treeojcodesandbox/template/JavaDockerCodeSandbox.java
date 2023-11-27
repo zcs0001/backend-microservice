@@ -1,37 +1,39 @@
 package com.tree.treeojcodesandbox.template;
 
-import cn.hutool.core.io.resource.ResourceUtil;
+import cn.hutool.core.date.StopWatch;
 import cn.hutool.core.util.ArrayUtil;
 import com.github.dockerjava.api.DockerClient;
 import com.github.dockerjava.api.async.ResultCallback;
 import com.github.dockerjava.api.command.*;
 import com.github.dockerjava.api.model.*;
-import com.github.dockerjava.core.DockerClientBuilder;
+import com.github.dockerjava.core.DefaultDockerClientConfig;
+import com.github.dockerjava.core.DockerClientConfig;
+import com.github.dockerjava.core.DockerClientImpl;
 import com.github.dockerjava.core.command.ExecStartResultCallback;
-import com.tree.backendmodel.model.codesandbox.ExecuteCodeRequest;
-import com.tree.backendmodel.model.codesandbox.ExecuteCodeResponse;
+import com.github.dockerjava.httpclient5.ApacheDockerHttpClient;
+import com.github.dockerjava.transport.DockerHttpClient;
+
 import com.tree.backendmodel.model.codesandbox.ExecuteMessage;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
-import org.springframework.util.StopWatch;
 
 import java.io.Closeable;
 import java.io.File;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
+import java.time.Duration;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * Java调用Docker 实现代码沙箱
+ *
+ */
 @Component
-@Slf4j
 public class JavaDockerCodeSandbox extends JavaCodeSandboxTemplate {
 
     private static final long TIME_OUT = 5000L;
 
     private static final Boolean FIRST_INIT = true;
-
 
     /**
      * 3、创建容器，把文件复制到容器内
@@ -41,17 +43,21 @@ public class JavaDockerCodeSandbox extends JavaCodeSandboxTemplate {
      */
     @Override
     public List<ExecuteMessage> runCode(File userCodeFile, List<String> inputList) {
-        log.info("1.JavaDockerCodeSandbox runCode");
         String userCodeParentPath = userCodeFile.getParentFile().getAbsolutePath();
-        log.info("2.JavaDockerCodeSandbox userCodeParentPath=>"+userCodeParentPath);
         // 获取默认的 Docker Client
-        DockerClient dockerClient = null;
-        try{
-            dockerClient = DockerClientBuilder.getInstance().build();
-        }catch (Exception e){
-            log.error("获取默认Docker Client失败"+e.getMessage());
-        }
-        log.info("3.JavaDockerCodeSandbox dockerClient=>"+dockerClient);
+//        DockerClient dockerClient = DockerClientBuilder.getInstance().build();
+        DockerClientConfig dockerClientConfig = DefaultDockerClientConfig.createDefaultConfigBuilder()
+                .withDockerTlsVerify(true)
+                .withDockerCertPath("C:\\Users\\TheTree\\.docker")
+                .build();
+        DockerHttpClient httpClient = new ApacheDockerHttpClient.Builder()
+                .dockerHost(dockerClientConfig.getDockerHost())
+                .sslConfig(dockerClientConfig.getSSLConfig())
+                .maxConnections(100)
+                .connectionTimeout(Duration.ofSeconds(30))
+                .responseTimeout(Duration.ofSeconds(45))
+                .build();
+        DockerClient dockerClient = DockerClientImpl.getInstance(dockerClientConfig, httpClient);
         // 拉取镜像
         String image = "openjdk:8-alpine";
         if (FIRST_INIT) {
@@ -82,7 +88,7 @@ public class JavaDockerCodeSandbox extends JavaCodeSandboxTemplate {
         hostConfig.withMemory(100 * 1000 * 1000L);
         hostConfig.withMemorySwap(0L);
         hostConfig.withCpuCount(1L);
-        hostConfig.withSecurityOpts(Arrays.asList("seccomp=安全管理配置字符串"));
+//        hostConfig.withSecurityOpts(Arrays.asList("seccomp=安全管理配置字符串"));
         hostConfig.setBinds(new Bind(userCodeParentPath, new Volume("/app")));
         CreateContainerResponse createContainerResponse = containerCmd
                 .withHostConfig(hostConfig)
@@ -136,7 +142,7 @@ public class JavaDockerCodeSandbox extends JavaCodeSandboxTemplate {
                         errorMessage[0] = new String(frame.getPayload());
                         System.out.println("输出错误结果：" + errorMessage[0]);
                     } else {
-                        message[0] = new String(frame.getPayload());
+                        message[0] = new String(frame.getPayload()).replace("\n","");
                         System.out.println("输出结果：" + message[0]);
                     }
                     super.onNext(frame);
@@ -180,7 +186,7 @@ public class JavaDockerCodeSandbox extends JavaCodeSandboxTemplate {
                 stopWatch.start();
                 dockerClient.execStartCmd(execId)
                         .exec(execStartResultCallback)
-                        .awaitCompletion(TIME_OUT, TimeUnit.MICROSECONDS);
+                        .awaitCompletion(5, TimeUnit.SECONDS);
                 stopWatch.stop();
                 time = stopWatch.getLastTaskTimeMillis();
                 statsCmd.close();
@@ -197,3 +203,4 @@ public class JavaDockerCodeSandbox extends JavaCodeSandboxTemplate {
         return executeMessageList;
     }
 }
+
