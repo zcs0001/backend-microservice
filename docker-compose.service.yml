@@ -63,17 +63,17 @@ services:
       - backend-user-service
       - backend-gateway
 
-  treeoj-code-sandbox:
-    container_name: treeoj-code-sandbox
-    build:
-      context: ./treeoj-code-sandbox
-      dockerfile: Dockerfile
-    ports:
-      - "8081:8081"
-    networks:
-      - mynetwork
-    depends_on:
-      - backend-gateway
+#  treeoj-code-sandbox:
+#    container_name: treeoj-code-sandbox
+#    build:
+#      context: ./treeoj-code-sandbox
+#      dockerfile: Dockerfile
+#    ports:
+#      - "8081:8081"
+#    networks:
+#      - mynetwork
+#    depends_on:
+#      - backend-gateway
 
 # 网络，不定义的话就是默认网络
 networks:

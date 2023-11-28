@@ -7,6 +7,7 @@ import com.github.dockerjava.api.async.ResultCallback;
 import com.github.dockerjava.api.command.*;
 import com.github.dockerjava.api.model.*;
 import com.github.dockerjava.core.DefaultDockerClientConfig;
+import com.github.dockerjava.core.DockerClientBuilder;
 import com.github.dockerjava.core.DockerClientConfig;
 import com.github.dockerjava.core.DockerClientImpl;
 import com.github.dockerjava.core.command.ExecStartResultCallback;
@@ -14,6 +15,7 @@ import com.github.dockerjava.httpclient5.ApacheDockerHttpClient;
 import com.github.dockerjava.transport.DockerHttpClient;
 
 import com.tree.backendmodel.model.codesandbox.ExecuteMessage;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import java.io.Closeable;
@@ -21,6 +23,7 @@ import java.io.File;
 import java.io.IOException;
 import java.time.Duration;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -29,6 +32,7 @@ import java.util.concurrent.TimeUnit;
  *
  */
 @Component
+@Slf4j
 public class JavaDockerCodeSandbox extends JavaCodeSandboxTemplate {
 
     private static final long TIME_OUT = 5000L;
@@ -45,10 +49,11 @@ public class JavaDockerCodeSandbox extends JavaCodeSandboxTemplate {
     public List<ExecuteMessage> runCode(File userCodeFile, List<String> inputList) {
         String userCodeParentPath = userCodeFile.getParentFile().getAbsolutePath();
         // 获取默认的 Docker Client
+        log.info("===============修改3===============");
 //        DockerClient dockerClient = DockerClientBuilder.getInstance().build();
         DockerClientConfig dockerClientConfig = DefaultDockerClientConfig.createDefaultConfigBuilder()
                 .withDockerTlsVerify(true)
-                .withDockerCertPath("C:\\Users\\TheTree\\.docker")
+                .withDockerCertPath("/root/.docker")
                 .build();
         DockerHttpClient httpClient = new ApacheDockerHttpClient.Builder()
                 .dockerHost(dockerClientConfig.getDockerHost())
