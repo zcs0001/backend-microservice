@@ -85,6 +85,7 @@ public class QuestionController {
         questionService.validQuestion(question, true);
         User loginUser = userFeignClient.getLoginUser(request);
         question.setUserId(loginUser.getId());
+        question.setUserName(loginUser.getUserName());
         question.setFavourNum(0);
         question.setThumbNum(0);
         boolean result = questionService.save(question);
@@ -194,7 +195,7 @@ public class QuestionController {
         // 用户权限判断
         User loginUser = userFeignClient.getLoginUser(request);
         // 非本人或者管理员，不能获取到题目所有信息
-        if (!question.getUserId().equals(loginUser.getId()) && userFeignClient.isAdmin(loginUser)) {
+        if (!question.getUserId().equals(loginUser.getId()) && !userFeignClient.isAdmin(loginUser)) {
             throw new BusinessException(ErrorCode.NO_AUTH_ERROR, "无权限");
         }
         return ResultUtils.success(question);

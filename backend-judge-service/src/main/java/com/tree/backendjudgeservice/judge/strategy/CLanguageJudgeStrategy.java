@@ -1,13 +1,13 @@
 package com.tree.backendjudgeservice.judge.strategy;
 
 import cn.hutool.json.JSONUtil;
+import com.sun.org.apache.bcel.internal.generic.IF_ACMPEQ;
 import com.tree.backendmodel.model.codesandbox.JudgeInfo;
 import com.tree.backendmodel.model.dto.question.JudgeCase;
 import com.tree.backendmodel.model.dto.question.JudgeConfig;
 import com.tree.backendmodel.model.entity.Question;
 import com.tree.backendmodel.model.enums.JudgeInfoMessageEnum;
 import lombok.extern.slf4j.Slf4j;
-
 
 import java.util.List;
 import java.util.Optional;
@@ -16,7 +16,7 @@ import java.util.Optional;
  * Java 程序的判题策略
  */
 @Slf4j
-public class JavaLanguageJudgeStrategy implements JudgeStrategy {
+public class CLanguageJudgeStrategy implements JudgeStrategy {
 
     /**
      * 执行判题
@@ -38,7 +38,7 @@ public class JavaLanguageJudgeStrategy implements JudgeStrategy {
         judgeInfoResponse.setMemory(executedMemory);
         judgeInfoResponse.setTime(executedTime);
         // 先判断是否编译成功
-        if (judgeInfo.getMessage().equals(JudgeInfoMessageEnum.COMPILE_ERROR.getText())){
+        if (judgeInfo.getMessage()!=null && judgeInfo.getMessage().equals(JudgeInfoMessageEnum.COMPILE_ERROR.getText())){
             judgeInfoMessageEnum = JudgeInfoMessageEnum.COMPILE_ERROR;
 //            judgeInfoResponse.setMessage(judgeInfoMessageEnum.getValue());
             judgeInfoResponse.setMessage(judgeInfoMessageEnum.getText());

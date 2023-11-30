@@ -24,6 +24,11 @@ public class QuestionQueryRequest extends PageRequest implements Serializable {
     private Long userId;
 
     /**
+     * 用户昵称
+     */
+    private String userName;
+
+    /**
      * 标题
      */
     private String title;

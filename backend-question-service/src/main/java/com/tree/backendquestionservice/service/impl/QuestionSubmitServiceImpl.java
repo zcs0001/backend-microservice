@@ -95,6 +95,7 @@ public class QuestionSubmitServiceImpl extends ServiceImpl<QuestionSubmitMapper,
         // 每个用户串行提交题目
         QuestionSubmit questionSubmit = new QuestionSubmit();
         questionSubmit.setUserId(userId);
+        questionSubmit.setUserName(loginUser.getUserName());
         questionSubmit.setQuestionId(questionId);
         questionSubmit.setSubmitCode(submitCode);
         questionSubmit.setSubmitLanguage(submitLanguage);
@@ -130,6 +131,7 @@ public class QuestionSubmitServiceImpl extends ServiceImpl<QuestionSubmitMapper,
         String submitLanguage = questionSubmitQueryRequest.getSubmitLanguage();
         Integer submitStatus = questionSubmitQueryRequest.getSubmitStatus();
         Long userId = questionSubmitQueryRequest.getUserId();
+        String userName = questionSubmitQueryRequest.getUserName();
         String sortField = questionSubmitQueryRequest.getSortField();
         String sortOrder = questionSubmitQueryRequest.getSortOrder();
 
@@ -141,6 +143,7 @@ public class QuestionSubmitServiceImpl extends ServiceImpl<QuestionSubmitMapper,
         // 拼接查询条件
         queryWrapper.eq(ObjectUtils.isNotEmpty(submitLanguage), "submitLanguage", submitLanguage);
         queryWrapper.eq(ObjectUtils.isNotEmpty(userId), "userId", userId);
+//        queryWrapper.eq(ObjectUtils.isNotEmpty(userId), "userName", userName);
         queryWrapper.eq(ObjectUtils.isNotEmpty(questionId), "questionId", questionId);
         queryWrapper.eq(QuestionSubmitStatusEnum.getEnumByValue(submitStatus) != null, "submitStatus", submitStatus);
         queryWrapper.eq("isDelete", false);

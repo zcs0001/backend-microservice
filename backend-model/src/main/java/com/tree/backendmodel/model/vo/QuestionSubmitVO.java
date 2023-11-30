@@ -31,6 +31,11 @@ public class QuestionSubmitVO implements Serializable {
     private Long userId;
 
     /**
+     * 用户昵称
+     */
+    private String userName;
+
+    /**
      * 判题信息
      */
     private JudgeInfo judgeInfo;

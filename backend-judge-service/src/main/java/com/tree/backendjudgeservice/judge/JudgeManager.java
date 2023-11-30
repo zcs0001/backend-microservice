@@ -1,10 +1,7 @@
 package com.tree.backendjudgeservice.judge;
 
 
-import com.tree.backendjudgeservice.judge.strategy.DefaultJudgeStrategy;
-import com.tree.backendjudgeservice.judge.strategy.JavaLanguageJudgeStrategy;
-import com.tree.backendjudgeservice.judge.strategy.JudgeContext;
-import com.tree.backendjudgeservice.judge.strategy.JudgeStrategy;
+import com.tree.backendjudgeservice.judge.strategy.*;
 import com.tree.backendmodel.model.codesandbox.JudgeInfo;
 import com.tree.backendmodel.model.entity.QuestionSubmit;
 import org.springframework.stereotype.Service;
@@ -27,6 +24,9 @@ public class JudgeManager {
         JudgeStrategy judgeStrategy = new DefaultJudgeStrategy();
         if ("java".equals(language)) {
             judgeStrategy = new JavaLanguageJudgeStrategy();
+        }
+        if ("c".equals(language)) {
+            judgeStrategy = new CLanguageJudgeStrategy();
         }
         return judgeStrategy.doJudge(judgeContext);
     }
