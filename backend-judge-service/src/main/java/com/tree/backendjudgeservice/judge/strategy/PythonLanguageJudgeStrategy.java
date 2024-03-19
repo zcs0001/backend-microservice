@@ -8,7 +8,6 @@ import com.tree.backendmodel.model.entity.Question;
 import com.tree.backendmodel.model.enums.JudgeInfoMessageEnum;
 import lombok.extern.slf4j.Slf4j;
 
-
 import java.util.List;
 import java.util.Optional;
 
@@ -16,7 +15,7 @@ import java.util.Optional;
  * Java 程序的判题策略
  */
 @Slf4j
-public class JavaLanguageJudgeStrategy implements JudgeStrategy {
+public class PythonLanguageJudgeStrategy implements JudgeStrategy {
 
     /**
      * 执行判题

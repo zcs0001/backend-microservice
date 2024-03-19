@@ -1,5 +1,7 @@
 package com.tree.backenduserservice.service.impl;
 
+import cn.hutool.core.util.StrUtil;
+import com.auth0.jwt.JWT;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -23,6 +25,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -126,10 +130,13 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         String token = JwtUtils.getToken(tokenMap);
         // 4、 记录用户的登录态
         request.getSession().setAttribute(USER_LOGIN_STATE, user);
-        LoginUserVO loginUserVO = this.getLoginUserVO(user);
+//        LoginUserVO loginUserVO = this.getLoginUserVO(user);
+        LoginUserVO loginUserVO = new LoginUserVO();
+        BeanUtils.copyProperties(user, loginUserVO);
         // 5、构造返回值
         loginUserVO.setToken(token);
-        return this.getLoginUserVO(user);
+//        return this.getLoginUserVO(user);
+        return loginUserVO;
     }
 
 

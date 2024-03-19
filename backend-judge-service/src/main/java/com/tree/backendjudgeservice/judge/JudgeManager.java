@@ -28,6 +28,9 @@ public class JudgeManager {
         if ("c".equals(language)) {
             judgeStrategy = new CLanguageJudgeStrategy();
         }
+        if ("python".equals(language)){
+            judgeStrategy = new PythonLanguageJudgeStrategy();
+        }
         return judgeStrategy.doJudge(judgeContext);
     }
 }
