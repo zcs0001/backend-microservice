@@ -62,16 +62,15 @@ Tree OJ（Tree Online Judge）系统是一个在线算法评测系统，用户�
 
 ## 项目结构图 🌟
 
-![项目结构图](./readmeimages/README-1694251310847.png)
+![README-1694251310847.png](..%2Fshieroj-backend-microservice-master%2Freadmeimages%2FREADME-1694251310847.png)
 
 ## 项目核心业务流程 🔥
 
 判题服务：获取题目信息、预计的输入输出结果，返回给主业务后端：用户的答案是否正确
 代码沙箱：只负责运行代码，给出程序运行的结果，不用管用户提交的程序是否正确。 因此 判题服务 和 代码沙箱 实现了解耦
-![OJ-business-Map](./readmeimages/README-1694246948088.png)
+![README-1694246948088.png](..%2Fshieroj-backend-microservice-master%2Freadmeimages%2FREADME-1694246948088.png)
 核心流程时序图
-![时序图](./readmeimages/README-1694247006735.png)
-
+![README-1694247006735.png](..%2Fshieroj-backend-microservice-master%2Freadmeimages%2FREADME-1694247006735.png)
 ## 微服务项目
 
 ### 服务模块划分
@@ -200,37 +199,24 @@ Tree OJ（Tree Online Judge）系统是一个在线算法评测系统，用户�
 ## OJ项目展示
 
 ### 项目首页
-
-![image-20240319144550557](C:\Users\TheTree\AppData\Roaming\Typora\typora-user-images\image-20240319144550557.png)
-
+![img.png](img.png)
 ### 管理员创建题目
-
-
-![image-20240319144628041](C:\Users\TheTree\AppData\Roaming\Typora\typora-user-images\image-20240319144628041.png)
+![img_1.png](img_1.png)
 
 ### 题目管理
 
-![image-20240319144639811](C:\Users\TheTree\AppData\Roaming\Typora\typora-user-images\image-20240319144639811.png)
-
+![img_2.png](img_2.png)
 ### 修改题目信息
 
-![image-20240319144658899](C:\Users\TheTree\AppData\Roaming\Typora\typora-user-images\image-20240319144658899.png)
-
+![img_3.png](img_3.png)
 ### 用户管理（管理员）
-
-![image-20240319144711732](C:\Users\TheTree\AppData\Roaming\Typora\typora-user-images\image-20240319144711732.png)
-
+![img_4.png](img_4.png)
 管理员修改用户信息
-![image-20240319144733784](C:\Users\TheTree\AppData\Roaming\Typora\typora-user-images\image-20240319144733784.png)
-
+![img_5.png](img_5.png)
 ### 个人信息
 
-![image-20240319144746711](C:\Users\TheTree\AppData\Roaming\Typora\typora-user-images\image-20240319144746711.png)
-
+![img_6.png](img_6.png)
 点击头像即可重新上传用户头像
-![image-20240319144808682](C:\Users\TheTree\AppData\Roaming\Typora\typora-user-images\image-20240319144808682.png)
-
+![img_7.png](img_7.png)
 ### 提交题目展示
-
-![image-20240319152850268](C:\Users\TheTree\AppData\Roaming\Typora\typora-user-images\image-20240319152850268.png)
-
+![img_8.png](img_8.png)
